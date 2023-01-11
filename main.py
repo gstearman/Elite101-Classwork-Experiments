@@ -1,10 +1,45 @@
 # C2C Chatbot project
+#
+# Simple chat program
+# This version introduces itself, asks how the user is feeling and then generates a random response from a list of responses.
+
+# Imports
 import random
 
-# Simple chat program
-# Responds randomly with one of four preprogrammed responses
+# Variables and constants
+quit_character = 'q'
+name = ''
 
-# This function generates a random response from a list of responses.
+# Functions go here
+
+# Function to processing feeling/emotion questions
+def myFeeling(feeling):
+  randresp1 = random.randint(1,2)
+  randresp2 = random.randint(1,2)
+  goodFeelings = ["happy","delighted" , "great" , "okay" ,"good" , "well" , "nice"]
+  badFeelings = ["sad","down","depressed", "unwell","unhappy" ,"bad"]
+  
+  if feeling in goodFeelings:
+      if randresp1 == 1:
+          print("Good to hear!")
+      elif randresp1 == 2:
+          print("Great!")
+  elif  feeling in badFeelings:
+      if randresp2 == 1:
+          print("I'm sorry to hear that!")
+          print("Keep your head up, I'm sure things will smoothen out soon enough.")
+      elif randresp2 == 2:
+          print("I'm sorry for you!")
+          wrong = input("What's wrong? ")
+          if wrong == "nothing" or wrong == "don't want to share." or wrong == "It's okay":
+              print("Alright, no worries.")
+          else:
+              print("We don't have to talk about it if you don't want to. \n Let's move on.")
+  else:
+      print("Alright. Let's continue.")
+# end myFeeling()
+
+# Function to processing generic input with random response
 def generate_response(user_input):
   responses = [
     "How interesting!",
@@ -13,15 +48,21 @@ def generate_response(user_input):
     "Programming is fun!"
   ]
   return random.choice(responses)
+# end generate_response()
 
+# Function to start the chat
 def init_chat():
-  quit_character = 'q'
+  name = input("What is your name? ")
+  print("Hi there, " + name  + ". My name is Chatbot, nice to meet you!\n")
 
-  user_input = input("Hello, how are you?\n")
-
-  while user_input != quit_character:
-    #Ask the user for more input, then use that in your response
-    user_input = input(generate_response(user_input) + "\n")
-
+  user_input = input("Hello, how are you feeling?\n")
+  myFeeling(user_input)
+  return name
+# end  init_chat()
+    
+# If this is main then start the chat.    
 if __name__ == "__main__":
-  init_chat()
+  name = init_chat()
+  while user_input != quit_character:
+    #Ask the user for more input, then use that in a random response
+    user_input = input(generate_response(user_input) + "\n")
