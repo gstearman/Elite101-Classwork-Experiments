@@ -52,7 +52,7 @@ def generate_response(user_input):
 
 # Function to start the chat
 def init_chat():
-  name = input("What is your name? ")
+  name = input("\n\n\n\nWhat is your name? ")
   print("Hi there, " + name  + ". My name is Chatbot, nice to meet you!\n")
 
   user_input = input("Hello, how are you feeling?\n")
@@ -63,6 +63,7 @@ def init_chat():
 # If this is main then start the chat.    
 if __name__ == "__main__":
   name = init_chat()
+  user_input = input("What should we talk about now? ")
   while user_input != quit_character:
     #Ask the user for more input, then use that in a random response
     user_input = input(generate_response(user_input) + "\n")
